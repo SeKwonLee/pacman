@@ -14,7 +14,7 @@ if (INDEX_TYPE EQUAL 3) # MASSTREE
   set(IDX_PERSISTENT OFF)
 endif()
 
-option(LOG_BATCHING "LOG_BATCHING to simulate FlatStore's batching (if LOG_PERSISTENT)" ON)
+option(LOG_BATCHING "LOG_BATCHING to simulate FlatStore's batching (if LOG_PERSISTENT)" OFF)
 
 option(REDUCE_PM_ACCESS "REDUCE_PM_ACCESS" OFF)
 option(HOT_COLD_SEPARATE "HOT_COLD_SEPARATE" OFF)

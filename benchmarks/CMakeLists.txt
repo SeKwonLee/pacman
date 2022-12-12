@@ -17,25 +17,25 @@ set(BENCHMARK_FILES
 )
 
 add_executable(pacman_bench ${BENCHMARK_FILES} ${DB_FILES})
-target_link_libraries(pacman_bench benchmark::benchmark ${PMEM} ${PMEMOBJ} jemalloc)
+target_link_libraries(pacman_bench benchmark::benchmark ${PMEM} ${PMEMOBJ} jemalloc "stdc++fs")
 if (INDEX_TYPE EQUAL 1)
-  target_link_libraries(pacman_bench cceh)
+  target_link_libraries(pacman_bench cceh "stdc++fs")
 elseif (INDEX_TYPE EQUAL 2)
-  target_link_libraries(pacman_bench fastfair)
+  target_link_libraries(pacman_bench fastfair "stdc++fs")
 elseif (INDEX_TYPE EQUAL 3)
-  target_link_libraries(pacman_bench masstree)
+  target_link_libraries(pacman_bench masstree "stdc++fs")
 endif()
 
 # recovery_test
 add_executable(recovery_test
       ${PROJECT_SOURCE_DIR}/benchmarks/recovery_test.cpp ${DB_FILES})
-target_link_libraries(recovery_test ${PMEM} ${PMEMOBJ})
+target_link_libraries(recovery_test ${PMEM} ${PMEMOBJ} "stdc++fs")
 if (INDEX_TYPE EQUAL 1)
-  target_link_libraries(recovery_test cceh)
+  target_link_libraries(recovery_test cceh "stdc++fs")
 elseif (INDEX_TYPE EQUAL 2)
-  target_link_libraries(recovery_test fastfair)
+  target_link_libraries(recovery_test fastfair "stdc++fs")
 elseif (INDEX_TYPE EQUAL 3)
-  target_link_libraries(recovery_test masstree)
+  target_link_libraries(recovery_test masstree "stdc++fs")
 endif()
 
 if (EVAL_OTHER_SYSTEMS)

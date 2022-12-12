@@ -251,14 +251,14 @@ void PrintWorkload(std::vector<std::string> &loadKeys,
 }
 
 int main(int argc, char **argv) {
-    if (argc != 6) {
-        std::cout << "Usage: ./ycsb [Num load keys] [Num run keys] [Value size] [ycsb workload type] [num threads]\n";
+    if (argc != 7) {
+        std::cout << "Usage: ./ycsb [Num load keys] [Num run keys] [Value size] [ycsb workload type] [num threads] [num cleaners]\n";
         std::cout << "Example: ./ycsb 100 100 64 f 4\n";
         std::cout << "Num load keys and Num run keys should be the same with the numbers in generated workloads\n";
         return 1;
     }
 
-    printf("Num load keys: %s\nNum run keys: %s\nValue size: %s\nYcsb workload type: %s\nNum threads: %s\n", argv[1], argv[2], argv[3], argv[4], argv[5]);
+    printf("Num load keys: %s\nNum run keys: %s\nValue size: %s\nYcsb workload type: %s\nNum threads: %s\nNum cleaners: %s\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6]);
 
     LOAD_SIZE = std::stoul(std::string(argv[1]));
     RUN_SIZE = std::stoul(std::string(argv[2]));
@@ -284,7 +284,7 @@ int main(int argc, char **argv) {
     }
 
     uint64_t num_threads = std::stoul(std::string(argv[5]));
-    uint64_t num_cleaners = 4;
+    uint64_t num_cleaners = std::stoul(std::string(argv[6]));
 
     std::vector<std::string> loadKeys;
     std::vector<std::string> loadVals;

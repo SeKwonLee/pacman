@@ -169,6 +169,8 @@ void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
         for (uint64_t i = start_key; i < end_key; i++) {
             worker[thread_id]->Put(Slice(loadKeys[i]), Slice(loadVals[i]));
         }
+
+        worker[thread_id]->FlushRemainAndUpdateIndex();
     };
 
     std::vector<std::thread> thread_group;

@@ -12,9 +12,11 @@
 #include <filesystem>
 
 #include "config.h"
-#include "viper/viper.hpp"
+#include "ChameleonDB/chameleon_db.h"
+#include "util/index_arena.h"
 
 using namespace std;
+using namespace CHAMELEONDB_NAMESPACE;
 
 enum {
     OP_INSERT,
@@ -36,7 +38,7 @@ enum {
 uint64_t LOAD_SIZE;
 uint64_t RUN_SIZE;
 
-std::unique_ptr<viper::Viper<std::string, std::string>> db_;
+ChameleonDB *db_ = nullptr;
 
 void GenerateWorkload(int wl,
         uint64_t valueSize,
@@ -149,7 +151,7 @@ void GenerateWorkload(int wl,
     printf("Run %lu keys\n", count);
 }
 
-void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
+void LoadWorkload(std::vector<std::unique_ptr<ChameleonDB::Worker>> &worker,
         std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
         uint64_t num_threads)
@@ -167,7 +169,8 @@ void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::str
             end_key = LOAD_SIZE;
 
         for (uint64_t i = start_key; i < end_key; i++) {
-            client[thread_id]->put(loadKeys[i], loadVals[i]);
+            worker[thread_id]->Put(Slice(loadKeys[i].data(), loadKeys[i].size()),
+                    Slice(loadVals[i].data(), loadVals[i].size()));
         }
     };
 
@@ -183,7 +186,7 @@ void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::str
     printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
 }
 
-void RunWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
+void RunWorkload(std::vector<std::unique_ptr<ChameleonDB::Worker>> &worker,
         std::vector<std::string> &runKeys,
         std::vector<std::string> &runVals,
         std::vector<int> &ranges,
@@ -204,9 +207,11 @@ void RunWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::stri
 
         for (uint64_t i = start_key; i < end_key; i++) {
             if (ops[i] == OP_UPDATE) {
-                client[thread_id]->put(runKeys[i], runVals[i]);
+                worker[thread_id]->Put(Slice(runKeys[i].data(), runKeys[i].size()),
+                        Slice(runVals[i].data(), runVals[i].size()));
             } else if (ops[i] == OP_READ) {
-                bool found = client[thread_id]->get(runKeys[i], &runVals[i]);
+                bool found = worker[thread_id]->Get(Slice(runKeys[i].data(),
+                            runKeys[i].size()), &runVals[i]);
                 if (!found) {
                     std::cout << "Key = " << runKeys[i] << " does not exist" << std::endl;
                 }
@@ -293,30 +298,23 @@ int main(int argc, char **argv) {
     std::vector<int> ranges;
     std::vector<int> ops;
 
-    viper::ViperConfig v_config;
-    v_config.num_client_threads = num_threads;
-    v_config.num_reclaim_threads = num_cleaners;
-    if (num_cleaners == 0) {
-        v_config.enable_reclamation = false;
-    }
-
-    std::string db_path = std::string(PMEM_DIR) + "log_kvs";
+    std::string db_path = std::string(PMEM_DIR) + "chameleondb";
     std::filesystem::remove_all(db_path);
     std::filesystem::create_directory(db_path);
 
-    size_t log_size = 48ul * 5 * 1024 * 1024 * 1024;
-    db_ = viper::Viper<std::string, std::string>::create(db_path, log_size, v_config);
+    size_t total_size = 48ul * 5 * 1024 * 1024 * 1024;
+    db_ = new ChameleonDB(db_path, total_size, num_threads, num_cleaners);
 
-    std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> client;
+    std::vector<std::unique_ptr<ChameleonDB::Worker>> worker;
     for (uint64_t i = 0; i < num_threads; i++) {
-        client.push_back(db_->get_client_ptr());
+        worker.push_back(db_->GetWorker());
     }
 
     GenerateWorkload(wl, valueSize, loadKeys, loadVals, runKeys, runVals, ranges, ops);
 
-    LoadWorkload(client, loadKeys, loadVals, num_threads);
+    LoadWorkload(worker, loadKeys, loadVals, num_threads);
 
-    RunWorkload(client, runKeys, runVals, ranges, ops, num_threads);
+    RunWorkload(worker, runKeys, runVals, ranges, ops, num_threads);
 
     //PrintWorkload(loadKeys, loadVals, runKeys, runVals, ranges, ops);
 

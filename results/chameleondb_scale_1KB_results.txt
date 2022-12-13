@@ -1,0 +1,23 @@
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 1
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.513447 ops/us
+Key = 38198529 does not exist
+Throughput: run, 0.519046 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 2
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.961355 ops/us
+Key = 57194402 does not exist
+Key = 38198529 does not exist

@@ -51,23 +51,23 @@ void GenerateWorkload(int wl,
     std::string txn_file;
 
     if (wl == WORKLOAD_A) {
-        init_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloada";
-        txn_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloada";
+        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloada";
+        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloada";
     } else if (wl == WORKLOAD_B) {
-        init_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadb";
-        txn_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadb";
+        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadb";
+        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadb";
     } else if (wl == WORKLOAD_C) {
-        init_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadc";
-        txn_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadc";
+        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadc";
+        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadc";
     } else if (wl == WORKLOAD_D) {
-        init_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadd";
-        txn_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadd";
+        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadd";
+        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadd";
     } else if (wl == WORKLOAD_E) {
-        init_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloade";
-        txn_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloade";
+        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloade";
+        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloade";
     } else if (wl == WORKLOAD_F) {
-        init_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadf";
-        txn_file = "/home/sekwon/projects/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadf";
+        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadf";
+        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadf";
     } else {
         std::cout << "Unknown workload type" << std::endl;
         return ;

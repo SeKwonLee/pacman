@@ -1,4 +1,3 @@
 .vscode
 build/
-results/
 *.json

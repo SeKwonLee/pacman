@@ -12,9 +12,22 @@
 #include <filesystem>
 
 #include "config.h"
-#include "viper/viper.hpp"
+
+#include "rocksdb/db.h"
+#include "rocksdb/slice.h"
+#include "rocksdb/options.h"
+#include "rocksdb/table.h"
+#include "rocksdb/filter_policy.h"
+
+#define ERROR_EXIT(fmt, ...)                                                   \
+  do {                                                                         \
+    fprintf(stderr, "\033[1;31mError(<%s>:%d %s): \033[0m" fmt "\n", __FILE__, \
+            __LINE__, __func__, ##__VA_ARGS__);                                \
+    abort();                                                                   \
+  } while (0)
 
 using namespace std;
+using namespace ROCKSDB_NAMESPACE;
 
 enum {
     OP_INSERT,
@@ -36,7 +49,7 @@ enum {
 uint64_t LOAD_SIZE;
 uint64_t RUN_SIZE;
 
-std::unique_ptr<viper::Viper<std::string, std::string>> db_;
+DB *db = nullptr;
 
 void GenerateWorkload(int wl,
         uint64_t valueSize,
@@ -107,50 +120,49 @@ void GenerateWorkload(int wl,
 
     printf("Loaded %lu keys\n", count);
 
-    std::ifstream infile_txn(txn_file);
-
-    count = 0;
-    while ((count < RUN_SIZE) && infile_txn.good()) {
-        infile_txn >> op >> key;
-
-        if (key.length() < 19) {
-            key = std::string(19 - key.length(), '0') + key;
-        }
-        key = key.substr(0, 8);
-
-        if (op.compare(insert) == 0) {
-            ops.push_back(OP_INSERT);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(valueSize, '0'));
-            ranges.push_back(1);
-        } else if (op.compare(update) == 0) {
-            ops.push_back(OP_UPDATE);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(valueSize, '0'));
-            ranges.push_back(1);
-        } else if (op.compare(read) == 0) {
-            ops.push_back(OP_READ);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(""));
-            ranges.push_back(1);
-        } else if (op.compare(scan) == 0) {
-            infile_txn >> range;
-            ops.push_back(OP_SCAN);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(""));
-            ranges.push_back(range);
-        } else {
-            std::cout << "UNRECOGNIZED CMD!\n";
-            return;
-        }
-        count++;
-    }
-
-    printf("Run %lu keys\n", count);
+//    std::ifstream infile_txn(txn_file);
+//
+//    count = 0;
+//    while ((count < RUN_SIZE) && infile_txn.good()) {
+//        infile_txn >> op >> key;
+//
+//        if (key.length() < 19) {
+//            key = std::string(19 - key.length(), '0') + key;
+//        }
+//        key = key.substr(0, 8);
+//
+//        if (op.compare(insert) == 0) {
+//            ops.push_back(OP_INSERT);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(valueSize, '0'));
+//            ranges.push_back(1);
+//        } else if (op.compare(update) == 0) {
+//            ops.push_back(OP_UPDATE);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(valueSize, '0'));
+//            ranges.push_back(1);
+//        } else if (op.compare(read) == 0) {
+//            ops.push_back(OP_READ);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(""));
+//            ranges.push_back(1);
+//        } else if (op.compare(scan) == 0) {
+//            infile_txn >> range;
+//            ops.push_back(OP_SCAN);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(""));
+//            ranges.push_back(range);
+//        } else {
+//            std::cout << "UNRECOGNIZED CMD!\n";
+//            return;
+//        }
+//        count++;
+//    }
+//
+//    printf("Run %lu keys\n", count);
 }
 
-void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
-        std::vector<std::string> &loadKeys,
+void LoadWorkload(std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
         uint64_t num_threads)
 {
@@ -167,7 +179,11 @@ void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::str
             end_key = LOAD_SIZE;
 
         for (uint64_t i = start_key; i < end_key; i++) {
-            client[thread_id]->put(loadKeys[i], loadVals[i]);
+            Status s = db->Put(WriteOptions(), rocksdb::Slice(loadKeys[i].data(), loadKeys[i].size()),
+                    rocksdb::Slice(loadVals[i].data(), loadVals[i].size()));
+            if (!s.ok()) {
+                ERROR_EXIT("put failed");
+            }
         }
     };
 
@@ -183,48 +199,48 @@ void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::str
     printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
 }
 
-void RunWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
-        std::vector<std::string> &runKeys,
-        std::vector<std::string> &runVals,
-        std::vector<int> &ranges,
-        std::vector<int> &ops,
-        uint64_t num_threads)
-{
-    std::atomic<uint64_t> next_thread_id;
-    next_thread_id.store(0);
-
-    auto starttime = std::chrono::system_clock::now();
-    auto func = [&]() {
-        uint64_t thread_id = next_thread_id.fetch_add(1);
-
-        uint64_t start_key = RUN_SIZE / num_threads * thread_id;
-        uint64_t end_key = start_key + RUN_SIZE / num_threads;
-        if (thread_id == num_threads - 1)
-            end_key = RUN_SIZE;
-
-        for (uint64_t i = start_key; i < end_key; i++) {
-            if (ops[i] == OP_UPDATE) {
-                client[thread_id]->put(runKeys[i], runVals[i]);
-            } else if (ops[i] == OP_READ) {
-                bool found = client[thread_id]->get(runKeys[i], &runVals[i]);
-                if (!found) {
-                    std::cout << "Key = " << runKeys[i] << " does not exist" << std::endl;
-                }
-            }
-        }
-    };
-
-    std::vector<std::thread> thread_group;
-
-    for (int i = 0; i < num_threads; i++)
-        thread_group.push_back(std::thread{func});
-
-    for (int i = 0; i < num_threads; i++)
-        thread_group[i].join();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
-            std::chrono::system_clock::now() - starttime);
-    printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
-}
+//void RunWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
+//        std::vector<std::string> &runKeys,
+//        std::vector<std::string> &runVals,
+//        std::vector<int> &ranges,
+//        std::vector<int> &ops,
+//        uint64_t num_threads)
+//{
+//    std::atomic<uint64_t> next_thread_id;
+//    next_thread_id.store(0);
+//
+//    auto starttime = std::chrono::system_clock::now();
+//    auto func = [&]() {
+//        uint64_t thread_id = next_thread_id.fetch_add(1);
+//
+//        uint64_t start_key = RUN_SIZE / num_threads * thread_id;
+//        uint64_t end_key = start_key + RUN_SIZE / num_threads;
+//        if (thread_id == num_threads - 1)
+//            end_key = RUN_SIZE;
+//
+//        for (uint64_t i = start_key; i < end_key; i++) {
+//            if (ops[i] == OP_UPDATE) {
+//                client[thread_id]->put(runKeys[i], runVals[i]);
+//            } else if (ops[i] == OP_READ) {
+//                bool found = client[thread_id]->get(runKeys[i], &runVals[i]);
+//                if (!found) {
+//                    std::cout << "Key = " << runKeys[i] << " does not exist" << std::endl;
+//                }
+//            }
+//        }
+//    };
+//
+//    std::vector<std::thread> thread_group;
+//
+//    for (int i = 0; i < num_threads; i++)
+//        thread_group.push_back(std::thread{func});
+//
+//    for (int i = 0; i < num_threads; i++)
+//        thread_group[i].join();
+//    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+//            std::chrono::system_clock::now() - starttime);
+//    printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
+//}
 
 void PrintWorkload(std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
@@ -293,30 +309,42 @@ int main(int argc, char **argv) {
     std::vector<int> ranges;
     std::vector<int> ops;
 
-    viper::ViperConfig v_config;
-    v_config.num_client_threads = num_threads;
-    v_config.num_reclaim_threads = num_cleaners;
-    if (num_cleaners == 0) {
-        v_config.enable_reclamation = false;
-    }
+    Options options;
+#ifdef ON_DCPMM
+    options.env = rocksdb::NewDCPMMEnv(rocksdb::DCPMMEnvOptions());
+    options.dcpmm_kvs_enable = false;
+    options.dcpmm_compress_value = false;
+    options.allow_mmap_reads = true;
+    options.allow_mmap_writes = true;
+    options.allow_dcpmm_writes = true;
+    options.recycle_dcpmm_sst = true;
+    printf("enable ON_DCPMM\n");
+#endif
+    rocksdb::BlockBasedTableOptions bbto;
+    bbto.cache_index_and_filter_blocks_for_mmap_read = true;
+    bbto.block_size = 256;
+    bbto.filter_policy.reset(rocksdb::NewBloomFilterPolicy(10, false));
+    options.table_factory.reset(rocksdb::NewBlockBasedTableFactory(bbto));
+    options.max_background_jobs = num_cleaners;
+    options.allow_concurrent_memtable_write = true;
+    options.enable_pipelined_write = true;
+    options.compression = kNoCompression;
+    options.create_if_missing = true;
+    options.error_if_exists = true;
 
-    std::string db_path = std::string(PMEM_DIR) + "log_kvs";
+    std::string db_path = std::string(PMEM_DIR) + "pmem_rocksdb";
     std::filesystem::remove_all(db_path);
     std::filesystem::create_directory(db_path);
-
-    size_t log_size = 48ul * 5 * 1024 * 1024 * 1024;
-    db_ = viper::Viper<std::string, std::string>::create(db_path, log_size, v_config);
-
-    std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> client;
-    for (uint64_t i = 0; i < num_threads; i++) {
-        client.push_back(db_->get_client_ptr());
+    Status s = DB::Open(options, db_path, &db);
+    if (!s.ok()) {
+        ERROR_EXIT("open failed: %s\n", s.ToString().c_str());
     }
 
     GenerateWorkload(wl, valueSize, loadKeys, loadVals, runKeys, runVals, ranges, ops);
 
-    LoadWorkload(client, loadKeys, loadVals, num_threads);
+    LoadWorkload(loadKeys, loadVals, num_threads);
 
-    RunWorkload(client, runKeys, runVals, ranges, ops, num_threads);
+    //RunWorkload(client, runKeys, runVals, ranges, ops, num_threads);
 
     //PrintWorkload(loadKeys, loadVals, runKeys, runVals, ranges, ops);
 

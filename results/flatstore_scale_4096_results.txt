@@ -1,0 +1,77 @@
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 1
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.303565 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 2
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.567869 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.947381 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 1.374981 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 1.462335 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 1.343040 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 1.259939 ops/us
+

@@ -1,0 +1,63 @@
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 1
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 0.444175 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 2
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 0.778475 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 4
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 1.287585 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 1.938814 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 2.604905 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 3.091491 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+Loaded 50331648 keys
+Throughput: load, 3.240373 ops/us
+

@@ -12,7 +12,18 @@
 #include <filesystem>
 
 #include "config.h"
-#include "viper/viper.hpp"
+#include <libpmemkv.hpp>
+#include <atomic>
+#include <string_view>
+#include <unistd.h>
+#include <assert.h>
+
+#define ERROR_EXIT(fmt, ...)                                                   \
+  do {                                                                         \
+    fprintf(stderr, "\033[1;31mError(<%s>:%d %s): \033[0m" fmt "\n", __FILE__, \
+            __LINE__, __func__, ##__VA_ARGS__);                                \
+    abort();                                                                   \
+  } while (0)
 
 using namespace std;
 
@@ -36,7 +47,7 @@ enum {
 uint64_t LOAD_SIZE;
 uint64_t RUN_SIZE;
 
-std::unique_ptr<viper::Viper<std::string, std::string>> db_;
+pmem::kv::db *db = nullptr;
 
 void GenerateWorkload(int wl,
         uint64_t valueSize,
@@ -107,50 +118,49 @@ void GenerateWorkload(int wl,
 
     printf("Loaded %lu keys\n", count);
 
-    std::ifstream infile_txn(txn_file);
-
-    count = 0;
-    while ((count < RUN_SIZE) && infile_txn.good()) {
-        infile_txn >> op >> key;
-
-        if (key.length() < 19) {
-            key = std::string(19 - key.length(), '0') + key;
-        }
-        key = key.substr(0, 8);
-
-        if (op.compare(insert) == 0) {
-            ops.push_back(OP_INSERT);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(valueSize, '0'));
-            ranges.push_back(1);
-        } else if (op.compare(update) == 0) {
-            ops.push_back(OP_UPDATE);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(valueSize, '0'));
-            ranges.push_back(1);
-        } else if (op.compare(read) == 0) {
-            ops.push_back(OP_READ);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(""));
-            ranges.push_back(1);
-        } else if (op.compare(scan) == 0) {
-            infile_txn >> range;
-            ops.push_back(OP_SCAN);
-            runKeys.push_back(key);
-            runVals.push_back(std::string(""));
-            ranges.push_back(range);
-        } else {
-            std::cout << "UNRECOGNIZED CMD!\n";
-            return;
-        }
-        count++;
-    }
-
-    printf("Run %lu keys\n", count);
+//    std::ifstream infile_txn(txn_file);
+//
+//    count = 0;
+//    while ((count < RUN_SIZE) && infile_txn.good()) {
+//        infile_txn >> op >> key;
+//
+//        if (key.length() < 19) {
+//            key = std::string(19 - key.length(), '0') + key;
+//        }
+//        key = key.substr(0, 8);
+//
+//        if (op.compare(insert) == 0) {
+//            ops.push_back(OP_INSERT);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(valueSize, '0'));
+//            ranges.push_back(1);
+//        } else if (op.compare(update) == 0) {
+//            ops.push_back(OP_UPDATE);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(valueSize, '0'));
+//            ranges.push_back(1);
+//        } else if (op.compare(read) == 0) {
+//            ops.push_back(OP_READ);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(""));
+//            ranges.push_back(1);
+//        } else if (op.compare(scan) == 0) {
+//            infile_txn >> range;
+//            ops.push_back(OP_SCAN);
+//            runKeys.push_back(key);
+//            runVals.push_back(std::string(""));
+//            ranges.push_back(range);
+//        } else {
+//            std::cout << "UNRECOGNIZED CMD!\n";
+//            return;
+//        }
+//        count++;
+//    }
+//
+//    printf("Run %lu keys\n", count);
 }
 
-void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
-        std::vector<std::string> &loadKeys,
+void LoadWorkload(std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
         uint64_t num_threads)
 {
@@ -167,7 +177,12 @@ void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::str
             end_key = LOAD_SIZE;
 
         for (uint64_t i = start_key; i < end_key; i++) {
-            client[thread_id]->put(loadKeys[i], loadVals[i]);
+            pmem::kv::status s =
+                db->put(pmem::kv::string_view(loadKeys[i].data(), loadKeys[i].size()),
+                        pmem::kv::string_view(loadVals[i].data(), loadVals[i].size()));
+            if (s != pmem::kv::status::OK) {
+                ERROR_EXIT("put failed");
+            }
         }
     };
 
@@ -183,48 +198,48 @@ void LoadWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::str
     printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
 }
 
-void RunWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
-        std::vector<std::string> &runKeys,
-        std::vector<std::string> &runVals,
-        std::vector<int> &ranges,
-        std::vector<int> &ops,
-        uint64_t num_threads)
-{
-    std::atomic<uint64_t> next_thread_id;
-    next_thread_id.store(0);
-
-    auto starttime = std::chrono::system_clock::now();
-    auto func = [&]() {
-        uint64_t thread_id = next_thread_id.fetch_add(1);
-
-        uint64_t start_key = RUN_SIZE / num_threads * thread_id;
-        uint64_t end_key = start_key + RUN_SIZE / num_threads;
-        if (thread_id == num_threads - 1)
-            end_key = RUN_SIZE;
-
-        for (uint64_t i = start_key; i < end_key; i++) {
-            if (ops[i] == OP_UPDATE) {
-                client[thread_id]->put(runKeys[i], runVals[i]);
-            } else if (ops[i] == OP_READ) {
-                bool found = client[thread_id]->get(runKeys[i], &runVals[i]);
-                if (!found) {
-                    std::cout << "Key = " << runKeys[i] << " does not exist" << std::endl;
-                }
-            }
-        }
-    };
-
-    std::vector<std::thread> thread_group;
-
-    for (int i = 0; i < num_threads; i++)
-        thread_group.push_back(std::thread{func});
-
-    for (int i = 0; i < num_threads; i++)
-        thread_group[i].join();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
-            std::chrono::system_clock::now() - starttime);
-    printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
-}
+//void RunWorkload(std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> &client,
+//        std::vector<std::string> &runKeys,
+//        std::vector<std::string> &runVals,
+//        std::vector<int> &ranges,
+//        std::vector<int> &ops,
+//        uint64_t num_threads)
+//{
+//    std::atomic<uint64_t> next_thread_id;
+//    next_thread_id.store(0);
+//
+//    auto starttime = std::chrono::system_clock::now();
+//    auto func = [&]() {
+//        uint64_t thread_id = next_thread_id.fetch_add(1);
+//
+//        uint64_t start_key = RUN_SIZE / num_threads * thread_id;
+//        uint64_t end_key = start_key + RUN_SIZE / num_threads;
+//        if (thread_id == num_threads - 1)
+//            end_key = RUN_SIZE;
+//
+//        for (uint64_t i = start_key; i < end_key; i++) {
+//            if (ops[i] == OP_UPDATE) {
+//                client[thread_id]->put(runKeys[i], runVals[i]);
+//            } else if (ops[i] == OP_READ) {
+//                bool found = client[thread_id]->get(runKeys[i], &runVals[i]);
+//                if (!found) {
+//                    std::cout << "Key = " << runKeys[i] << " does not exist" << std::endl;
+//                }
+//            }
+//        }
+//    };
+//
+//    std::vector<std::thread> thread_group;
+//
+//    for (int i = 0; i < num_threads; i++)
+//        thread_group.push_back(std::thread{func});
+//
+//    for (int i = 0; i < num_threads; i++)
+//        thread_group[i].join();
+//    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+//            std::chrono::system_clock::now() - starttime);
+//    printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
+//}
 
 void PrintWorkload(std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
@@ -293,30 +308,33 @@ int main(int argc, char **argv) {
     std::vector<int> ranges;
     std::vector<int> ops;
 
-    viper::ViperConfig v_config;
-    v_config.num_client_threads = num_threads;
-    v_config.num_reclaim_threads = num_cleaners;
-    if (num_cleaners == 0) {
-        v_config.enable_reclamation = false;
-    }
+    size_t pmemkv_pool_size = 48ul * 5 * 1024 * 1024 * 1024;
 
-    std::string db_path = std::string(PMEM_DIR) + "log_kvs";
-    std::filesystem::remove_all(db_path);
-    std::filesystem::create_directory(db_path);
+    pmem::kv::config cfg;
+    pmem::kv::status s = cfg.put_size(pmemkv_pool_size);
+    assert(s == pmem::kv::status::OK);
+    s = cfg.put_create_or_error_if_exists(true);
+    assert(s == pmem::kv::status::OK);
+    db = new pmem::kv::db();
+#ifdef IDX_PERSISTENT
+    std::string pool_path = std::string(PMEM_DIR) + "pmemkv_pool";
+    remove(pool_path.c_str());
+    s = cfg.put_path(pool_path);
+    assert(s == pmem::kv::status::OK);
+    s = db->open("cmap", std::move(cfg));
+#else
+    ERROR_EXIT("not supported");
+#endif
 
-    size_t log_size = 48ul * 5 * 1024 * 1024 * 1024;
-    db_ = viper::Viper<std::string, std::string>::create(db_path, log_size, v_config);
-
-    std::vector<std::unique_ptr<viper::Viper<std::string, std::string>::ClientWrapper>> client;
-    for (uint64_t i = 0; i < num_threads; i++) {
-        client.push_back(db_->get_client_ptr());
+    if (s != pmem::kv::status::OK) {
+        ERROR_EXIT("pmemkv open failed");
     }
 
     GenerateWorkload(wl, valueSize, loadKeys, loadVals, runKeys, runVals, ranges, ops);
 
-    LoadWorkload(client, loadKeys, loadVals, num_threads);
+    LoadWorkload(loadKeys, loadVals, num_threads);
 
-    RunWorkload(client, runKeys, runVals, ranges, ops, num_threads);
+    //RunWorkload(client, runKeys, runVals, ranges, ops, num_threads);
 
     //PrintWorkload(loadKeys, loadVals, runKeys, runVals, ranges, ops);
 

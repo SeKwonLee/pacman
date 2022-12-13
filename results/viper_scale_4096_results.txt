@@ -1,0 +1,77 @@
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 1
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.183832 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 2
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.264856 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 4
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.359915 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.407361 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.373161 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.277855 ops/us
+
+Num load keys: 10000000
+Num run keys: 10000000
+Value size: 4096
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 10000000 keys
+Run 10000000 keys
+Throughput: load, 0.248582 ops/us
+

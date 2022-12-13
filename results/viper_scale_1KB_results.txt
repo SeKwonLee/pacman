@@ -1,0 +1,420 @@
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 1
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.410782 ops/us
+Throughput: run, 0.481267 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 2
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.705764 ops/us
+Throughput: run, 0.853571 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 4
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.135920 ops/us
+Throughput: run, 1.446437 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.511741 ops/us
+Throughput: run, 1.958702 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.611082 ops/us
+Throughput: run, 2.415981 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.358301 ops/us
+Throughput: run, 1.852377 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.309444 ops/us
+Throughput: run, 1.720328 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 1
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.415799 ops/us
+Throughput: run, 0.619933 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 2
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.711256 ops/us
+Throughput: run, 1.170414 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 4
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.135928 ops/us
+Throughput: run, 2.089422 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 8
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.582282 ops/us
+Throughput: run, 2.949098 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 16
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.605910 ops/us
+Throughput: run, 2.816120 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 32
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.403374 ops/us
+Throughput: run, 2.201802 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: b
+Num threads: 44
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.355235 ops/us
+Throughput: run, 2.096492 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 1
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.406046 ops/us
+Throughput: run, 0.679427 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 2
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.712917 ops/us
+Throughput: run, 1.240222 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 4
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.179045 ops/us
+Throughput: run, 2.200486 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 8
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.510412 ops/us
+Throughput: run, 3.059995 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 16
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.609048 ops/us
+Throughput: run, 2.873991 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 32
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.405301 ops/us
+Throughput: run, 2.618192 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: c
+Num threads: 44
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.290011 ops/us
+Throughput: run, 2.501962 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 1
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.412390 ops/us
+Throughput: run, 0.687299 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 2
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.720165 ops/us
+Throughput: run, 1.283619 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 4
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.126831 ops/us
+Throughput: run, 2.221205 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 8
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.491885 ops/us
+Throughput: run, 3.109867 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 16
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.636258 ops/us
+Throughput: run, 2.721220 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 32
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.362479 ops/us
+Throughput: run, 2.200594 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: d
+Num threads: 44
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.296701 ops/us
+Throughput: run, 2.124963 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 1
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.414389 ops/us
+Throughput: run, 0.524470 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 2
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 0.714358 ops/us
+Throughput: run, 0.948299 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 4
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.141670 ops/us
+Throughput: run, 1.604312 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 8
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.523739 ops/us
+Throughput: run, 2.500631 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 16
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.619171 ops/us
+Throughput: run, 2.613443 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 32
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.352584 ops/us
+Throughput: run, 2.204197 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 1024
+Ycsb workload type: f
+Num threads: 44
+Num cleaners: 4
+pool size 245760 MB, num_allocated_blocks 5242880
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 1.307820 ops/us
+Throughput: run, 2.168661 ops/us
+

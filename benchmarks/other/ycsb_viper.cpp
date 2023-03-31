@@ -33,12 +33,18 @@ enum {
     WORKLOAD_F,
 };
 
+enum {
+    ZIPFIAN,
+    UNIFORM,
+    LATEST,
+};
+
 uint64_t LOAD_SIZE;
 uint64_t RUN_SIZE;
 
 std::unique_ptr<viper::Viper<std::string, std::string>> db_;
 
-void GenerateWorkload(int wl,
+void GenerateWorkload(int wd, int wl,
         uint64_t valueSize,
         std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
@@ -50,24 +56,54 @@ void GenerateWorkload(int wl,
     std::string init_file;
     std::string txn_file;
 
-    if (wl == WORKLOAD_A) {
-        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloada";
-        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloada";
-    } else if (wl == WORKLOAD_B) {
-        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadb";
-        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadb";
-    } else if (wl == WORKLOAD_C) {
-        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadc";
-        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadc";
-    } else if (wl == WORKLOAD_D) {
-        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadd";
-        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadd";
-    } else if (wl == WORKLOAD_E) {
-        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloade";
-        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloade";
-    } else if (wl == WORKLOAD_F) {
-        init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/load_randint_workloadf";
-        txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/txn_randint_workloadf";
+    if (wd == ZIPFIAN) {
+        if (wl == WORKLOAD_A) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loada_zipf_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsa_zipf_int.dat";
+        } else if (wl == WORKLOAD_B) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadb_zipf_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsb_zipf_int.dat";
+        } else if (wl == WORKLOAD_C) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadc_zipf_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsc_zipf_int.dat";
+        } else if (wl == WORKLOAD_E) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loade_zipf_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnse_zipf_int.dat";
+        } else if (wl == WORKLOAD_F) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadf_zipf_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsf_zipf_int.dat";
+        } else {
+            std::cout << "Unknown workload type" << std::endl;
+            return ;
+        }
+    } else if (wd == UNIFORM) {
+        if (wl == WORKLOAD_A) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loada_unif_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsa_unif_int.dat";
+        } else if (wl == WORKLOAD_B) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadb_unif_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsb_unif_int.dat";
+        } else if (wl == WORKLOAD_C) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadc_unif_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsc_unif_int.dat";
+        } else if (wl == WORKLOAD_E) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loade_unif_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnse_unif_int.dat";
+        } else if (wl == WORKLOAD_F) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadf_unif_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsf_unif_int.dat";
+        } else {
+            std::cout << "Unknown workload type" << std::endl;
+            return ;
+        }
+    } else if (wd == LATEST) {
+        if (wl == WORKLOAD_D) {
+            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadd_latest_int.dat";
+            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsd_latest_int.dat";
+        } else {
+            std::cout << "Unknown workload type" << std::endl;
+            return ;
+        }
     } else {
         std::cout << "Unknown workload type" << std::endl;
         return ;
@@ -251,40 +287,52 @@ void PrintWorkload(std::vector<std::string> &loadKeys,
 }
 
 int main(int argc, char **argv) {
-    if (argc != 7) {
-        std::cout << "Usage: ./ycsb [Num load keys] [Num run keys] [Value size] [ycsb workload type] [num threads] [num cleaners]\n";
-        std::cout << "Example: ./ycsb 100 100 64 f 4\n";
+    if (argc != 8) {
+        std::cout << "Usage: ./ycsb [Num load keys] [Num run keys] [Value size] [workload pattern] [ycsb workload type] [num threads] [num cleaners]\n";
+        std::cout << "Example: ./ycsb 100 100 64 zipf f 4 4\n";
         std::cout << "Num load keys and Num run keys should be the same with the numbers in generated workloads\n";
         return 1;
     }
 
-    printf("Num load keys: %s\nNum run keys: %s\nValue size: %s\nYcsb workload type: %s\nNum threads: %s\nNum cleaners: %s\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6]);
+    printf("Num load keys: %s\nNum run keys: %s\nValue size: %s\nYcsb workload pattern: %s\nYcsb workload type: %s\nNum threads: %s\nNum cleaners: %s\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7]);
 
     LOAD_SIZE = std::stoul(std::string(argv[1]));
     RUN_SIZE = std::stoul(std::string(argv[2]));
 
     uint64_t valueSize = std::stoul(std::string(argv[3]));
 
-    int wl;
-    if (strcmp(argv[4], "a") == 0) {
-        wl = WORKLOAD_A;
-    } else if (strcmp(argv[4], "b") == 0) {
-        wl = WORKLOAD_B;
-    } else if (strcmp(argv[4], "c") == 0) {
-        wl = WORKLOAD_C;
-    } else if (strcmp(argv[4], "d") == 0) {
-        wl = WORKLOAD_D;
-    } else if (strcmp(argv[4], "e") == 0) {
-        wl = WORKLOAD_E;
-    } else if (strcmp(argv[4], "f") == 0) {
-        wl = WORKLOAD_F;
+    int wd;
+    if (strcmp(argv[4], "zipf") == 0) {
+        wd = ZIPFIAN;
+    } else if (strcmp(argv[4], "unif") == 0) {
+        wd = UNIFORM;
+    } else if (strcmp(argv[4], "latest") == 0) {
+        wd = LATEST;
     } else {
-        fprintf(stderr, "Unknown workload: %s\n", argv[2]);
+        fprintf(stderr, "Unknown workload pattern: %s\n", argv[4]);
         exit(1);
     }
 
-    uint64_t num_threads = std::stoul(std::string(argv[5]));
-    uint64_t num_cleaners = std::stoul(std::string(argv[6]));
+    int wl;
+    if (strcmp(argv[5], "a") == 0) {
+        wl = WORKLOAD_A;
+    } else if (strcmp(argv[5], "b") == 0) {
+        wl = WORKLOAD_B;
+    } else if (strcmp(argv[5], "c") == 0) {
+        wl = WORKLOAD_C;
+    } else if (strcmp(argv[5], "d") == 0) {
+        wl = WORKLOAD_D;
+    } else if (strcmp(argv[5], "e") == 0) {
+        wl = WORKLOAD_E;
+    } else if (strcmp(argv[5], "f") == 0) {
+        wl = WORKLOAD_F;
+    } else {
+        fprintf(stderr, "Unknown workload: %s\n", argv[5]);
+        exit(1);
+    }
+
+    uint64_t num_threads = std::stoul(std::string(argv[6]));
+    uint64_t num_cleaners = std::stoul(std::string(argv[7]));
 
     std::vector<std::string> loadKeys;
     std::vector<std::string> loadVals;
@@ -312,7 +360,7 @@ int main(int argc, char **argv) {
         client.push_back(db_->get_client_ptr());
     }
 
-    GenerateWorkload(wl, valueSize, loadKeys, loadVals, runKeys, runVals, ranges, ops);
+    GenerateWorkload(wd, wl, valueSize, loadKeys, loadVals, runKeys, runVals, ranges, ops);
 
     LoadWorkload(client, loadKeys, loadVals, num_threads);
 

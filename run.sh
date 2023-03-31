@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Compile instructions
-# cmake .. -DIDX_PERSISTENT=OFF; make -j
+cmake -DCMAKE_BUILD_TYPE=Release -DIDX_PERSISTENT=OFF -DPACMAN=ON ..; make -j
 
 #Usage: ./ycsb [Num load keys] [Num run keys] [Value size] [ycsb workload type] [num threads] [num cleaners]
 

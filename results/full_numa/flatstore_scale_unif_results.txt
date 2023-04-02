@@ -1,0 +1,260 @@
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.617425 ops/us
+Throughput: run, 2.762096 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.092005 ops/us
+Throughput: run, 4.381278 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 8.650405 ops/us
+Throughput: run, 3.607845 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 8.829620 ops/us
+Throughput: run, 2.504104 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 7.854507 ops/us
+Throughput: run, 2.534603 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.646081 ops/us
+Throughput: run, 2.911566 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.565478 ops/us
+Throughput: run, 4.479919 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 7.902921 ops/us
+Throughput: run, 4.969661 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.091970 ops/us
+Throughput: run, 3.348397 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 8.383948 ops/us
+Throughput: run, 2.835303 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.642758 ops/us
+Throughput: run, 2.936882 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.499266 ops/us
+Throughput: run, 5.201565 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 8.427176 ops/us
+Throughput: run, 7.507857 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.419553 ops/us
+Throughput: run, 3.392381 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 8.157516 ops/us
+Throughput: run, 3.003060 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.208895 ops/us
+Throughput: run, 2.630013 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.744471 ops/us
+Throughput: run, 4.494398 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 7.776076 ops/us
+Throughput: run, 4.067160 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.199965 ops/us
+Throughput: run, 2.890680 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 8.457605 ops/us
+Throughput: run, 2.504305 ops/us
+

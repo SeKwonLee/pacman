@@ -1,0 +1,305 @@
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.286606 ops/us
+Key = 38865591 does not exist
+Key = 57064350 does not exist
+Throughput: run, 2.479563 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.465800 ops/us
+Key = 57625083 does not exist
+Key = 21218815 does not exist
+Key = 21218815 does not exist
+Throughput: run, 3.777670 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.604932 ops/us
+Key = 57018986 does not exist
+Key = 21218815 does not exist
+Key = 21218815 does not exist
+Throughput: run, 3.643552 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.698617 ops/us
+Key = 21355653 does not exist
+Key = 21355653 does not exist
+Throughput: run, 3.081323 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 4
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.669785 ops/us
+Key = 38198529 does not exist
+Key = 44633689 does not exist
+Throughput: run, 1.738506 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 8
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.126739 ops/us
+Key = 15269555 does not exist
+Throughput: run, 2.773300 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.986588 ops/us
+Throughput: run, 4.192403 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 32
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.604927 ops/us
+Throughput: run, 3.341305 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 44
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.330466 ops/us
+Key = 62056308 does not exist
+Throughput: run, 3.007252 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 4
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.669665 ops/us
+Throughput: run, 1.821096 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 8
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.612710 ops/us
+Key = 75904461 does not exist
+Key = 51401007 does not exist
+Key = 11922381 does not exist
+Key = 87632289 does not exist
+Key = 24308900 does not exist
+Key = 75904461 does not exist
+Throughput: run, 3.166537 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.741206 ops/us
+Key = 75904461 does not exist
+Key = 36560627 does not exist
+Key = 51401007 does not exist
+Key = 11922381 does not exist
+Key = 87632289 does not exist
+Key = 12057173 does not exist
+Key = 75904461 does not exist
+Key = 24308900 does not exist
+Key = 75769668 does not exist
+Throughput: run, 4.902100 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 32
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.532864 ops/us
+Key = 86302410 does not exist
+Key = 75904461 does not exist
+Key = 86302410 does not exist
+Key = 13315947 does not exist
+Key = 75904461 does not exist
+Key = 24308900 does not exist
+Key = 34706849 does not exist
+Key = 75769668 does not exist
+Key = 91821263 does not exist
+Key = 49547229 does not exist
+Key = 36560627 does not exist
+Key = 51401007 does not exist
+Key = 86302410 does not exist
+Key = 37819401 does not exist
+Key = 74050683 does not exist
+Key = 11922381 does not exist
+Key = 87632289 does not exist
+Key = 12057173 does not exist
+Throughput: run, 3.640200 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 44
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.442262 ops/us
+Key = 29618962 does not exist
+Key = 69365106 does not exist
+Key = 29618962 does not exist
+Key = 52954397 does not exist
+Key = 12892227 does not exist
+Key = 62375762 does not exist
+Key = 73987247 does not exist
+Key = 75744147 does not exist
+Key = 02144744 does not exist
+Key = 12892227 does not exist
+Key = 51462642 does not exist
+Key = 03619985 does not exist
+Key = 52954397 does not exist
+Key = 31422109 does not exist
+Key = 12892227 does not exist
+Key = 62375762 does not exist
+Key = 29618962 does not exist
+Key = 39294520 does not exist
+Key = 52954397 does not exist
+Key = 29618962 does not exist
+Key = 02144744 does not exist
+Key = 53497351 does not exist
+Key = 91168328 does not exist
+Key = 02144744 does not exist
+Throughput: run, 3.364235 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 4
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.728629 ops/us
+Key = 21490673 does not exist
+Throughput: run, 1.767496 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 8
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 3.155097 ops/us
+Key = 21490673 does not exist
+Throughput: run, 2.614839 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.981096 ops/us
+Throughput: run, 3.816608 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 32
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 4.743408 ops/us
+Throughput: run, 3.250964 ops/us
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 44
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.287033 ops/us
+Key = 57729137 does not exist
+Key = 57729137 does not exist
+Key = 57729137 does not exist
+Throughput: run, 2.930231 ops/us
+

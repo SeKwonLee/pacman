@@ -10,6 +10,7 @@
 #include <string>
 #include <thread>
 #include <filesystem>
+#include <algorithm>
 
 #include "config.h"
 #include "db.h"
@@ -193,6 +194,14 @@ void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
     std::atomic<uint64_t> next_thread_id;
     next_thread_id.store(0);
 
+    std::vector<std::thread> thread_group;
+    std::vector<std::vector<double>> latency_maps;
+
+    for (int i = 0; i < num_threads; i++)
+        latency_maps.push_back(std::vector<double>());
+    for (int i = 0; i < num_threads; i++)
+        latency_maps[i].reserve(LOAD_SIZE / num_threads);
+
     auto starttime = std::chrono::system_clock::now();
     auto func = [&]() {
         uint64_t thread_id = next_thread_id.fetch_add(1);
@@ -203,13 +212,16 @@ void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
             end_key = LOAD_SIZE;
 
         for (uint64_t i = start_key; i < end_key; i++) {
+            auto op_start = std::chrono::system_clock::now();
             worker[thread_id]->Put(Slice(loadKeys[i]), Slice(loadVals[i]));
+            auto op_end = std::chrono::system_clock::now();
+            double op_latency = (double) std::chrono::duration_cast<std::chrono::nanoseconds>(
+                    op_end - op_start).count();
+            latency_maps[thread_id].push_back(op_latency);
         }
 
         worker[thread_id]->FlushRemainAndUpdateIndex();
     };
-
-    std::vector<std::thread> thread_group;
 
     for (int i = 0; i < num_threads; i++)
         thread_group.push_back(std::thread{func});
@@ -219,6 +231,20 @@ void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now() - starttime);
     printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
+
+    std::vector<double> combined_latency_map;
+    combined_latency_map.reserve(LOAD_SIZE);
+    for (int i = 0; i < num_threads; i++) {
+        combined_latency_map.insert(combined_latency_map.end(), latency_maps[i].begin(), latency_maps[i].end());
+    }
+    std::sort(combined_latency_map.begin(), combined_latency_map.end());
+    double tail_latency_90 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.90)];
+    double tail_latency_95 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.95)];
+    double tail_latency_99 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.99)];
+    printf("Average latency = %f ns\n", ((duration.count() * 1000.0) / (LOAD_SIZE * 1.0)));
+    printf("90th tail latency = %f ns\n", tail_latency_90);
+    printf("95th tail latency = %f ns\n", tail_latency_95);
+    printf("99th tail latency = %f ns\n", tail_latency_99);
 }
 
 void RunWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
@@ -275,7 +301,8 @@ void RunWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
             std::chrono::system_clock::now() - starttime);
     printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
 
-    std::vector<double> combined_latency_map.reserve(RUN_SIZE);
+    std::vector<double> combined_latency_map;
+    combined_latency_map.reserve(RUN_SIZE);
     for (int i = 0; i < num_threads; i++) {
         combined_latency_map.insert(combined_latency_map.end(), latency_maps[i].begin(), latency_maps[i].end());
     }
@@ -283,6 +310,7 @@ void RunWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
     double tail_latency_90 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.90)];
     double tail_latency_95 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.95)];
     double tail_latency_99 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.99)];
+    printf("Average latency = %f ns\n", ((duration.count() * 1000.0) / (RUN_SIZE * 1.0)));
     printf("90th tail latency = %f ns\n", tail_latency_90);
     printf("95th tail latency = %f ns\n", tail_latency_95);
     printf("99th tail latency = %f ns\n", tail_latency_99);

@@ -1,0 +1,420 @@
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: a
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.227609 ops/us
+Average latency = 191.292028 ns
+90th tail latency = 1393.000000 ns
+95th tail latency = 1566.000000 ns
+99th tail latency = 1997.000000 ns
+Throughput: run, 3.520485 ops/us
+Average latency = 284.051796 ns
+90th tail latency = 1546.000000 ns
+95th tail latency = 1831.000000 ns
+99th tail latency = 3408.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: a
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.615865 ops/us
+Average latency = 103.994807 ns
+90th tail latency = 1506.000000 ns
+95th tail latency = 1744.000000 ns
+99th tail latency = 2445.000000 ns
+Throughput: run, 6.238903 ops/us
+Average latency = 160.284599 ns
+90th tail latency = 1637.000000 ns
+95th tail latency = 1957.000000 ns
+99th tail latency = 4153.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.176093 ops/us
+Average latency = 65.893114 ns
+90th tail latency = 1910.000000 ns
+95th tail latency = 2316.000000 ns
+99th tail latency = 3219.000000 ns
+Throughput: run, 9.915249 ops/us
+Average latency = 100.854754 ns
+90th tail latency = 1782.000000 ns
+95th tail latency = 2198.000000 ns
+99th tail latency = 7293.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: a
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 16.551193 ops/us
+Average latency = 60.418606 ns
+90th tail latency = 2381.000000 ns
+95th tail latency = 2860.000000 ns
+99th tail latency = 3825.000000 ns
+Throughput: run, 6.763237 ops/us
+Average latency = 147.858183 ns
+90th tail latency = 1986.000000 ns
+95th tail latency = 2416.000000 ns
+99th tail latency = 115841.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: a
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.433759 ops/us
+Average latency = 64.793030 ns
+90th tail latency = 2744.000000 ns
+95th tail latency = 3262.000000 ns
+99th tail latency = 4531.000000 ns
+Throughput: run, 5.960271 ops/us
+Average latency = 167.777598 ns
+90th tail latency = 2144.000000 ns
+95th tail latency = 2599.000000 ns
+99th tail latency = 228232.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: b
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.090785 ops/us
+Average latency = 196.433345 ns
+90th tail latency = 1397.000000 ns
+95th tail latency = 1571.000000 ns
+99th tail latency = 1999.000000 ns
+Throughput: run, 3.815633 ops/us
+Average latency = 262.079716 ns
+90th tail latency = 1362.000000 ns
+95th tail latency = 2528.000000 ns
+99th tail latency = 4124.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: b
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.636313 ops/us
+Average latency = 103.774130 ns
+90th tail latency = 1499.000000 ns
+95th tail latency = 1733.000000 ns
+99th tail latency = 2406.000000 ns
+Throughput: run, 6.814760 ops/us
+Average latency = 146.740317 ns
+90th tail latency = 1432.000000 ns
+95th tail latency = 2930.000000 ns
+99th tail latency = 6385.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: b
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.435884 ops/us
+Average latency = 64.784110 ns
+90th tail latency = 1936.000000 ns
+95th tail latency = 2368.000000 ns
+99th tail latency = 3399.000000 ns
+Throughput: run, 7.326333 ops/us
+Average latency = 136.493941 ns
+90th tail latency = 1467.000000 ns
+95th tail latency = 13680.000000 ns
+99th tail latency = 24888.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: b
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 16.456705 ops/us
+Average latency = 60.765505 ns
+90th tail latency = 2420.000000 ns
+95th tail latency = 2922.000000 ns
+99th tail latency = 3980.000000 ns
+Throughput: run, 3.352936 ops/us
+Average latency = 298.246106 ns
+90th tail latency = 1635.000000 ns
+95th tail latency = 7416.000000 ns
+99th tail latency = 257309.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: b
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.141473 ops/us
+Average latency = 66.043774 ns
+90th tail latency = 2687.000000 ns
+95th tail latency = 3152.000000 ns
+99th tail latency = 4130.000000 ns
+Throughput: run, 2.988249 ops/us
+Average latency = 334.644119 ns
+90th tail latency = 1709.000000 ns
+95th tail latency = 7740.000000 ns
+99th tail latency = 436629.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: c
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.170221 ops/us
+Average latency = 193.415344 ns
+90th tail latency = 1395.000000 ns
+95th tail latency = 1568.000000 ns
+99th tail latency = 2001.000000 ns
+Throughput: run, 3.921848 ops/us
+Average latency = 254.981816 ns
+90th tail latency = 1288.000000 ns
+95th tail latency = 2650.000000 ns
+99th tail latency = 4294.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: c
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.549545 ops/us
+Average latency = 104.717036 ns
+90th tail latency = 1504.000000 ns
+95th tail latency = 1739.000000 ns
+99th tail latency = 2416.000000 ns
+Throughput: run, 6.938716 ops/us
+Average latency = 144.118885 ns
+90th tail latency = 1349.000000 ns
+95th tail latency = 3082.000000 ns
+99th tail latency = 6809.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: c
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.604230 ops/us
+Average latency = 64.085186 ns
+90th tail latency = 1900.000000 ns
+95th tail latency = 2292.000000 ns
+99th tail latency = 3127.000000 ns
+Throughput: run, 7.318698 ops/us
+Average latency = 136.636317 ns
+90th tail latency = 1392.000000 ns
+95th tail latency = 13930.000000 ns
+99th tail latency = 24910.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: c
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 16.210022 ops/us
+Average latency = 61.690231 ns
+90th tail latency = 2419.000000 ns
+95th tail latency = 2931.000000 ns
+99th tail latency = 4069.000000 ns
+Throughput: run, 3.174674 ops/us
+Average latency = 314.992984 ns
+90th tail latency = 1507.000000 ns
+95th tail latency = 8031.000000 ns
+99th tail latency = 267831.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: c
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.859706 ops/us
+Average latency = 63.052873 ns
+90th tail latency = 2632.000000 ns
+95th tail latency = 3116.000000 ns
+99th tail latency = 4165.000000 ns
+Throughput: run, 2.896474 ops/us
+Average latency = 345.247328 ns
+90th tail latency = 1553.000000 ns
+95th tail latency = 8197.000000 ns
+99th tail latency = 447059.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: f
+Num threads: 4
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 5.273708 ops/us
+Average latency = 189.619919 ns
+90th tail latency = 1391.000000 ns
+95th tail latency = 1560.000000 ns
+99th tail latency = 1980.000000 ns
+Throughput: run, 3.586359 ops/us
+Average latency = 278.834323 ns
+90th tail latency = 1403.000000 ns
+95th tail latency = 1788.000000 ns
+99th tail latency = 3731.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: f
+Num threads: 8
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 9.593767 ops/us
+Average latency = 104.234338 ns
+90th tail latency = 1500.000000 ns
+95th tail latency = 1736.000000 ns
+99th tail latency = 2416.000000 ns
+Throughput: run, 6.491945 ops/us
+Average latency = 154.037038 ns
+90th tail latency = 1482.000000 ns
+95th tail latency = 2058.000000 ns
+99th tail latency = 4712.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: f
+Num threads: 16
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.684034 ops/us
+Average latency = 63.759108 ns
+90th tail latency = 1908.000000 ns
+95th tail latency = 2307.000000 ns
+99th tail latency = 3185.000000 ns
+Throughput: run, 9.370413 ops/us
+Average latency = 106.718878 ns
+90th tail latency = 1616.000000 ns
+95th tail latency = 2474.000000 ns
+99th tail latency = 13430.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: f
+Num threads: 32
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 16.237624 ops/us
+Average latency = 61.585367 ns
+90th tail latency = 2396.000000 ns
+95th tail latency = 2875.000000 ns
+99th tail latency = 3839.000000 ns
+Throughput: run, 5.172068 ops/us
+Average latency = 193.346242 ns
+90th tail latency = 1737.000000 ns
+95th tail latency = 2499.000000 ns
+99th tail latency = 168020.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: f
+Num threads: 44
+Num cleaners: 4
+DB index type: CCEH
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 15.966040 ops/us
+Average latency = 62.632938 ns
+90th tail latency = 2570.000000 ns
+95th tail latency = 3055.000000 ns
+99th tail latency = 4105.000000 ns
+Throughput: run, 4.408909 ops/us
+Average latency = 226.813495 ns
+90th tail latency = 1841.000000 ns
+95th tail latency = 2581.000000 ns
+99th tail latency = 330862.000000 ns
+

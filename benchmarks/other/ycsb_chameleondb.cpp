@@ -60,48 +60,48 @@ void GenerateWorkload(int wd, int wl,
 
     if (wd == ZIPFIAN) {
         if (wl == WORKLOAD_A) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loada_zipf_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsa_zipf_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloada";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloada";
         } else if (wl == WORKLOAD_B) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadb_zipf_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsb_zipf_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloadb";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloadb";
         } else if (wl == WORKLOAD_C) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadc_zipf_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsc_zipf_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloadc";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloadc";
         } else if (wl == WORKLOAD_E) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loade_zipf_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnse_zipf_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloade";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloade";
         } else if (wl == WORKLOAD_F) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadf_zipf_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsf_zipf_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloadf";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloadf";
         } else {
             std::cout << "Unknown workload type" << std::endl;
             return ;
         }
     } else if (wd == UNIFORM) {
         if (wl == WORKLOAD_A) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loada_unif_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsa_unif_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/load_randint_workloada";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/txn_randint_workloada";
         } else if (wl == WORKLOAD_B) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadb_unif_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsb_unif_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/load_randint_workloadb";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/txn_randint_workloadb";
         } else if (wl == WORKLOAD_C) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadc_unif_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsc_unif_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/load_randint_workloadc";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/txn_randint_workloadc";
         } else if (wl == WORKLOAD_E) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loade_unif_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnse_unif_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/load_randint_workloade";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/txn_randint_workloade";
         } else if (wl == WORKLOAD_F) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadf_unif_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsf_unif_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/load_randint_workloadf";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/unif/txn_randint_workloadf";
         } else {
             std::cout << "Unknown workload type" << std::endl;
             return ;
         }
     } else if (wd == LATEST) {
         if (wl == WORKLOAD_D) {
-            init_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/loadd_latest_int.dat";
-            txn_file = "/home/cc/sekwon/downloads/recipe/index-microbench/workloads/txnsd_latest_int.dat";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloadd";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloadd";
         } else {
             std::cout << "Unknown workload type" << std::endl;
             return ;
@@ -277,7 +277,7 @@ void RunWorkload(std::vector<std::unique_ptr<ChameleonDB::Worker>> &worker,
 
         for (uint64_t i = start_key; i < end_key; i++) {
             auto op_start = std::chrono::system_clock::now();
-            if (ops[i] == OP_UPDATE) {
+            if (ops[i] == OP_UPDATE || ops[i] == OP_INSERT) {
                 worker[thread_id]->Put(Slice(runKeys[i].data(), runKeys[i].size()),
                         Slice(runVals[i].data(), runVals[i].size()));
             } else if (ops[i] == OP_READ) {
@@ -402,7 +402,7 @@ int main(int argc, char **argv) {
     std::filesystem::remove_all(db_path);
     std::filesystem::create_directory(db_path);
 
-    size_t total_size = 48ul * 5 * 1024 * 1024 * 1024;
+    size_t total_size = 48ul * 2 * 1024 * 1024 * 1024;
     db_ = new ChameleonDB(db_path, total_size, num_threads, num_cleaners);
 
     std::vector<std::unique_ptr<ChameleonDB::Worker>> worker;

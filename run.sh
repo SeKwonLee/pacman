@@ -12,8 +12,8 @@ do
         for nthreads in 16
         do
             sudo rm -rf /mnt/pmem0/*
-            sudo numactl --membind=0 --cpunodebind=0 ./example/ycsb_flatstore 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/flatstore_results.txt
-            printf "\n" &>> ../results/flatstore_results.txt
+            sudo numactl --membind=0 --cpunodebind=0 ./example/ycsb_flatstore 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/flatstore_${pattern}_${workload}.csv
+            printf "\n" &>> ../results/flatstore_${pattern}_${workload}.csv
         done
     done
 done
@@ -25,8 +25,8 @@ do
         for nthreads in 16
         do
             sudo rm -rf /mnt/pmem0/*
-            sudo numactl --membind=0 --cpunodebind=0 ./example/ycsb_flatstore 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/flatstore_results.txt
-            printf "\n" &>> ../results/flatstore_results.txt
+            sudo numactl --membind=0 --cpunodebind=0 ./example/ycsb_flatstore 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/flatstore_${pattern}_${workload}.csv
+            printf "\n" &>> ../results/flatstore_${pattern}_${workload}.csv
         done
     done
 done
@@ -38,8 +38,8 @@ do
         for nthreads in 16
         do
             sudo rm -rf /mnt/pmem0/*
-            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_viper 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/viper_results.txt
-            printf "\n" &>> ../results/viper_results.txt
+            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_viper 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/viper_${pattern}_${workload}.csv
+            printf "\n" &>> ../results/viper_${pattern}_${workload}.csv
         done
     done
 done
@@ -51,8 +51,8 @@ do
         for nthreads in 16
         do
             sudo rm -rf /mnt/pmem0/*
-            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_viper 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/viper_results.txt
-            printf "\n" &>> ../results/viper_results.txt
+            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_viper 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/viper_${pattern}_${workload}.csv
+            printf "\n" &>> ../results/viper_${pattern}_${workload}.csv
         done
     done
 done
@@ -64,8 +64,8 @@ do
         for nthreads in 16
         do
             sudo rm -rf /mnt/pmem0/*
-            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_chameleondb 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/chameleondb_results.txt
-            printf "\n" &>> ../results/chameleondb_results.txt
+            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_chameleondb 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/chameleondb_${pattern}_${workload}.csv
+            printf "\n" &>> ../results/chameleondb_${pattern}_${workload}.csv
         done
     done
 done
@@ -77,8 +77,8 @@ do
         for nthreads in 16
         do
             sudo rm -rf /mnt/pmem0/*
-            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_chameleondb 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/chameleondb_results.txt
-            printf "\n" &>> ../results/chameleondb_results.txt
+            sudo numactl --membind=0 --cpunodebind=0 ./benchmarks/other/ycsb_chameleondb 50331648 50331648 256 ${pattern} ${workload} ${nthreads} 4 &>> ../results/chameleondb_${pattern}_${workload}.csv
+            printf "\n" &>> ../results/chameleondb_${pattern}_${workload}.csv
         done
     done
 done

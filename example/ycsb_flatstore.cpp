@@ -11,6 +11,7 @@
 #include <thread>
 #include <filesystem>
 #include <algorithm>
+#include <numeric>
 
 #include "config.h"
 #include "db.h"
@@ -99,8 +100,8 @@ void GenerateWorkload(int wd, int wl,
         }
     } else if (wd == LATEST) {
         if (wl == WORKLOAD_D) {
-            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/load_randint_workloadd";
-            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/zipf/txn_randint_workloadd";
+            init_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/latest/load_randint_workloadd";
+            txn_file = "/home/cc/mcsPMKV/src/tests/ycsbTracer/workloads/latest/txn_randint_workloadd";
         } else {
             std::cout << "Unknown workload type" << std::endl;
             return ;
@@ -189,7 +190,8 @@ void GenerateWorkload(int wd, int wl,
 void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
         std::vector<std::string> &loadKeys,
         std::vector<std::string> &loadVals,
-        uint64_t num_threads)
+        uint64_t num_threads,
+        int wl, int wd)
 {
     std::atomic<uint64_t> next_thread_id;
     next_thread_id.store(0);
@@ -230,7 +232,6 @@ void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
         thread_group[i].join();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now() - starttime);
-    printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
 
     std::vector<double> combined_latency_map;
     combined_latency_map.reserve(LOAD_SIZE);
@@ -238,13 +239,24 @@ void LoadWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
         combined_latency_map.insert(combined_latency_map.end(), latency_maps[i].begin(), latency_maps[i].end());
     }
     std::sort(combined_latency_map.begin(), combined_latency_map.end());
+
+    double average_latency = (double) std::accumulate(combined_latency_map.begin(), combined_latency_map.end(), 0.0) / (double)(LOAD_SIZE * 1.0);
+    double median_latency = combined_latency_map[trunc((double)combined_latency_map.size() * 0.50)];
     double tail_latency_90 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.90)];
     double tail_latency_95 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.95)];
     double tail_latency_99 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.99)];
-    printf("Average latency = %f ns\n", ((duration.count() * 1000.0) / (LOAD_SIZE * 1.0)));
-    printf("90th tail latency = %f ns\n", tail_latency_90);
-    printf("95th tail latency = %f ns\n", tail_latency_95);
-    printf("99th tail latency = %f ns\n", tail_latency_99);
+
+    if (wl == WORKLOAD_A && wd == UNIFORM) {
+        for (int i = 0; i < combined_latency_map.size(); i++) {
+            printf("%f\n", combined_latency_map[i]);
+        }
+        printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
+        printf("Average latency = %f ns\n", average_latency);
+        printf("50th median latency = %f ns\n", median_latency);
+        printf("90th tail latency = %f ns\n", tail_latency_90);
+        printf("95th tail latency = %f ns\n", tail_latency_95);
+        printf("99th tail latency = %f ns\n", tail_latency_99);
+    }
 }
 
 void RunWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
@@ -299,7 +311,6 @@ void RunWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
 
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
             std::chrono::system_clock::now() - starttime);
-    printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
 
     std::vector<double> combined_latency_map;
     combined_latency_map.reserve(RUN_SIZE);
@@ -307,10 +318,19 @@ void RunWorkload(std::vector<std::unique_ptr<DB::Worker>> &worker,
         combined_latency_map.insert(combined_latency_map.end(), latency_maps[i].begin(), latency_maps[i].end());
     }
     std::sort(combined_latency_map.begin(), combined_latency_map.end());
+
+    double average_latency = (double) std::accumulate(combined_latency_map.begin(), combined_latency_map.end(), 0.0) / (double)(RUN_SIZE * 1.0);
+    double median_latency = combined_latency_map[trunc((double)combined_latency_map.size() * 0.50)];
     double tail_latency_90 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.90)];
     double tail_latency_95 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.95)];
     double tail_latency_99 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.99)];
-    printf("Average latency = %f ns\n", ((duration.count() * 1000.0) / (RUN_SIZE * 1.0)));
+
+    for (int i = 0; i < combined_latency_map.size(); i++) {
+        printf("%f\n", combined_latency_map[i]);
+    }
+    printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
+    printf("Average latency = %f ns\n", average_latency);
+    printf("50th median latency = %f ns\n", median_latency);
     printf("90th tail latency = %f ns\n", tail_latency_90);
     printf("95th tail latency = %f ns\n", tail_latency_95);
     printf("99th tail latency = %f ns\n", tail_latency_99);
@@ -409,7 +429,7 @@ int main(int argc, char **argv) {
 
     GenerateWorkload(wd, wl, valueSize, loadKeys, loadVals, runKeys, runVals, ranges, ops);
 
-    LoadWorkload(worker, loadKeys, loadVals, num_threads);
+    LoadWorkload(worker, loadKeys, loadVals, num_threads, wl, wd);
 
     RunWorkload(worker, runKeys, runVals, ranges, ops, num_threads);
 

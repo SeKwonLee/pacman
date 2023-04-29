@@ -1,0 +1,205 @@
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.469943 ops/us
+Average latency = 404.867669 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9375.000000 ns
+Key = 57018986 does not exist
+Key = 21218815 does not exist
+Throughput: run, 2.385987 ops/us
+Average latency = 419.113815 ns
+90th tail latency = 5167.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 9292.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: b
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.467006 ops/us
+Average latency = 405.349712 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9375.000000 ns
+Key = 29120435 does not exist
+Throughput: run, 2.695188 ops/us
+Average latency = 371.031682 ns
+90th tail latency = 5167.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 7750.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: c
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.472624 ops/us
+Average latency = 404.428601 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9417.000000 ns
+Key = 12057173 does not exist
+Key = 36560627 does not exist
+Key = 87632289 does not exist
+Key = 72202525 does not exist
+Key = 11922381 does not exist
+Key = 75904461 does not exist
+Key = 51401007 does not exist
+Key = 12057173 does not exist
+Key = 51401007 does not exist
+Key = 87632289 does not exist
+Key = 87632289 does not exist
+Key = 72202525 does not exist
+Key = 75904461 does not exist
+Key = 12057173 does not exist
+Throughput: run, 2.788218 ops/us
+Average latency = 358.652016 ns
+90th tail latency = 5167.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 7625.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: unif
+Ycsb workload type: f
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.446199 ops/us
+Average latency = 408.797443 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5167.000000 ns
+99th tail latency = 9500.000000 ns
+Key = 38198529 does not exist
+Throughput: run, 2.431935 ops/us
+Average latency = 411.195159 ns
+90th tail latency = 5167.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 8834.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: a
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.488842 ops/us
+Average latency = 401.793242 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9375.000000 ns
+Key = 03038172 does not exist
+Key = 38198529 does not exist
+Key = 21218815 does not exist
+Key = 38198529 does not exist
+Throughput: run, 2.507888 ops/us
+Average latency = 398.741861 ns
+90th tail latency = 5084.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 8625.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: b
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.461525 ops/us
+Average latency = 406.252166 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9417.000000 ns
+Throughput: run, 2.796200 ops/us
+Average latency = 357.628187 ns
+90th tail latency = 5083.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 6250.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: c
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.476931 ops/us
+Average latency = 403.725366 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9416.000000 ns
+Key = 51401007 does not exist
+Key = 51401007 does not exist
+Key = 75904461 does not exist
+Throughput: run, 2.826963 ops/us
+Average latency = 353.736480 ns
+90th tail latency = 5125.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 7500.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: zipf
+Ycsb workload type: f
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.475040 ops/us
+Average latency = 404.033919 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9292.000000 ns
+Throughput: run, 2.573146 ops/us
+Average latency = 388.629258 ns
+90th tail latency = 5083.000000 ns
+95th tail latency = 5250.000000 ns
+99th tail latency = 7833.000000 ns
+
+Num load keys: 50331648
+Num run keys: 50331648
+Value size: 256
+Ycsb workload pattern: latest
+Ycsb workload type: d
+Num threads: 16
+Num cleaners: 4
+Loaded 50331648 keys
+Run 50331648 keys
+Throughput: load, 2.468561 ops/us
+Average latency = 405.094365 ns
+90th tail latency = 2750.000000 ns
+95th tail latency = 5166.000000 ns
+99th tail latency = 9375.000000 ns
+Throughput: run, 2.816408 ops/us
+Average latency = 355.062207 ns
+90th tail latency = 2792.000000 ns
+95th tail latency = 5208.000000 ns
+99th tail latency = 5417.000000 ns
+

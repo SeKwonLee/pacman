@@ -246,17 +246,15 @@ void LoadWorkload(std::vector<std::unique_ptr<ChameleonDB::Worker>> &worker,
     double tail_latency_95 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.95)];
     double tail_latency_99 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.99)];
 
-    if (wl == WORKLOAD_A && wd == UNIFORM) {
-        for (int i = 0; i < combined_latency_map.size(); i++) {
-            printf("%f\n", combined_latency_map[i]);
-        }
-        printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
-        printf("Average latency = %f ns\n", average_latency);
-        printf("50th median latency = %f ns\n", median_latency);
-        printf("90th tail latency = %f ns\n", tail_latency_90);
-        printf("95th tail latency = %f ns\n", tail_latency_95);
-        printf("99th tail latency = %f ns\n", tail_latency_99);
-    }
+    //for (int i = 0; i < combined_latency_map.size(); i++) {
+    //    printf("%f\n", combined_latency_map[i]);
+    //}
+    printf("Throughput: load, %f ops/us\n", ((LOAD_SIZE * 1.0) / duration.count()));
+    printf("Average latency = %f ns\n", average_latency);
+    printf("50th median latency = %f ns\n", median_latency);
+    printf("90th tail latency = %f ns\n", tail_latency_90);
+    printf("95th tail latency = %f ns\n", tail_latency_95);
+    printf("99th tail latency = %f ns\n", tail_latency_99);
 }
 
 void RunWorkload(std::vector<std::unique_ptr<ChameleonDB::Worker>> &worker,
@@ -327,9 +325,9 @@ void RunWorkload(std::vector<std::unique_ptr<ChameleonDB::Worker>> &worker,
     double tail_latency_95 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.95)];
     double tail_latency_99 = combined_latency_map[trunc((double)combined_latency_map.size() * 0.99)];
 
-    for (int i = 0; i < combined_latency_map.size(); i++) {
-        printf("%f\n", combined_latency_map[i]);
-    }
+    //for (int i = 0; i < combined_latency_map.size(); i++) {
+    //    printf("%f\n", combined_latency_map[i]);
+    //}
     printf("Throughput: run, %f ops/us\n", ((RUN_SIZE * 1.0) / duration.count()));
     printf("Average latency = %f ns\n", average_latency);
     printf("50th median latency = %f ns\n", median_latency);
